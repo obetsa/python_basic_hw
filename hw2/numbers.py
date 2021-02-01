@@ -21,9 +21,9 @@ try:
         print(d1 + d2 + d3)
         if d1 < d2 and d2 < d3:
             print("Зростання")
-        if d1 > d2 and d2 < d3:
+        elif d1 > d2 and d2 > d3:
             print("Спадання")
-        if d1 == d2 and d2 == d3:
+        elif d1 == d2 and d2 == d3:
             print("Рівні")
         else:
             print("Змішані")
