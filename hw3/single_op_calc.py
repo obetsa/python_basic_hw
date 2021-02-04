@@ -9,6 +9,58 @@
         Иначе - выводит сообщение 'Bye!' и прекращает свою работу.
 """
 
-n  = int(input("Введіть число: "))
-operation = input("Виберіть операцію: +, -, *, /")
+while True:
+    try:
+        n = int(input("Введіть кількість чисел : "))
+        operation = input("Виберіть операцію: +, -, *, /:  ")
+        if operation == "+":
+            result = 0
+            i = 1
+            while i <= n:
+                number = int(input("Введіть число: "))
+                result += number
+                i += 1
+            print(result)
+
+        elif operation == "-":
+            number = int(input("Введіть число: "))
+            result = number
+            i = 2
+            while i <= n:
+                number = int(input("Введіть число: "))
+                result -= number
+                i += 1
+            print(result)
+
+        elif operation == "*":
+            result = 1
+            i = 1
+            while i <= n:
+                number = int(input("Введіть число: "))
+                result *= number
+                i += 1
+            print(result)
+
+        elif operation == "/":
+            number = int(input("Введіть число: "))
+            result = number
+            i = 1
+            while i < n:
+                number = int(input("Введіть число: "))
+                try:
+                    result /= number
+                    i += 1
+                except ZeroDivisionError:   
+                    print("Ділення на 0 неможливе")          
+            print(result)
+            
+        else:
+            print("Введені дані не коректні")  
+
+    except ValueError:
+        print("Введено не коректні дані")
+
+    if input("Continue? (Y/n) ") == "n":
+        print("Bye!")
+        break
 

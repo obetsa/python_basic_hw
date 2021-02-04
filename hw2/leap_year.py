@@ -5,5 +5,9 @@
     * високосный год кратный 4, но не кратный 100 или кратный 400
 """
 
-a = int(input("Вводимо рік: "))
-print('366 днів' if a % 4 == 0 and not (a % 100 !=0 and a % 400 ==0) else print('365 днів'))
+year = int(input("year: "))
+
+if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
+    print(366)
+else:
+    print(365)

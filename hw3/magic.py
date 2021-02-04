@@ -19,5 +19,30 @@
 """
 
 import random
+while True:
+    try:
+        random_number = random.randint(1, 10)  # случайное число от 1 до 10
+        # print(random_number)
+        attempts = 0
+        while attempts < 3:
 
-random_number = random.randint(1, 100)  # случайное число от 1 до 100
+            number = int(input("Введіть число: "))
+            attempts +=1
+            if number > random_number:
+                print("Введене число більше, за загадане")
+            if number < random_number:
+                print("Введене число менше, за загадане")
+            if number == random_number:
+                print(attempts, "спроби!", "Вгадали")
+                break
+            else:
+                print("Використано", attempts,"спроби з трьох. Не вгадали")
+        # if number == random_number input("Continue? (Y/n) ") == "n":
+        #     else:
+        #         print("Bye")
+        #         break
+    except ValueError:
+        print("Введено не коректні дані")  
+
+    if input("Продовжити? (Y/n) ") == "n":
+        break 
