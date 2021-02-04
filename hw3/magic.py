@@ -37,12 +37,10 @@ while True:
                 break
             else:
                 print("Використано", attempts,"спроби з трьох. Не вгадали")
-        # if number == random_number input("Continue? (Y/n) ") == "n":
-        #     else:
-        #         print("Bye")
-        #         break
+
     except ValueError:
         print("Введено не коректні дані")  
 
     if input("Продовжити? (Y/n) ") == "n":
+        print("Bye!")
         break 
