@@ -14,7 +14,6 @@
         Результат: "some edited string".
     (Использовать форматирование строк f либо метод format)
 """
-
 # можно заменить данную строку на input()
 string = 'Lorem, Ipsum, is, sImPlY, duMMy, TEXT, of, The, printing, INDUSTRY.'
 
