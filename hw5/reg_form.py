@@ -19,7 +19,7 @@
     3. Пользователь ввод пароль.
         Программа проверяет надежность пароля:
         - минимум 8 символов
-            (функция len())
+            (функция len())_
         - пароль не должен содержать пробельные символы
             (строчный метод isspace())
         - наличие минимум 1 буквы в верхнем регистре, 1 в нижнем и 1 цифры
@@ -36,8 +36,90 @@
 """
 
 
+def phone():
+    phone = input('Введіть номер телефону: ')
+    digits = ''
+    for char in phone:
+        if char.isdigit():
+            digits += char
+
+    if len(digits) >= 9:
+        phone = '+380' + digits[-9:]
+        return phone
+    else:
+        print('Не вірний формат')
+        return False
+
+
+def email():
+    email = input('Введіть email: ')
+    if len(email) < 6:
+        print('Недостатньо символів')
+        return
+    else:
+        if email.count('@') > 1 or email.count('@') == 0 or email[email.rfind('@'):].count('.') < 1:
+            print('Не вірний')
+            return False
+        else:
+            return email
+
+
+def password():
+    upper_case = 0
+    lower_case = 0
+    number = 0
+    symbol = 0
+    space = 0
+    password = input('Введіть пароль: ')
+
+    for char in password:
+        if char.isupper():
+            upper_case += 1
+        elif char.islower():
+            lower_case += 1
+        elif char.isdigit():
+            number += 1
+        elif char.isspace():
+            space += 1
+            print('Пробіл в паролі')
+            return
+        else:
+            symbol += 1
+
+    if len(password) < 8:
+        print('Закороткий пароль')
+        return
+    elif upper_case > 0 and lower_case > 0 and number > 0 and symbol > 0:
+        return password
+    else:
+        print('Пароль заслабкий')
+
+
 def main():
-    pass
+    p = phone()
+    while not p:
+        p = phone()
+
+    e = email()
+    while not e:
+        e = email()
+
+    w = password()
+    while not w:
+        w = password()
+
+    r = input('Повторіть введення паролю: ')
+    if r != w:
+        print('Паролі не сходяться. Повторіть спробу')
+        password()
+    while True:
+        print(f'''Вітаємо з успішною реєтрацією!
+Ваш номер телефона: {p}
+Ваш email: {e}
+Ваш пароль: {w}
+''')
+        break
+    return
 
 
 if __name__ == '__main__':
