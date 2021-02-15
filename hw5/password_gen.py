@@ -62,13 +62,31 @@ def m_password():
 
 def s_password():
     size = random.randint(8, 16)
+    password = ""
     lowercase = (string.ascii_lowercase)
     uppercase = (string.ascii_uppercase)
     number = (string.digits)
     symbols = (string.punctuation)
     strong = uppercase + lowercase + number + symbols
-    strong_p = ''.join(random.sample(strong, size))
-    print(strong_p)
+    for i in range(size):
+        strong += random.choise(strong)
+
+    counter_d = counter_u = counter_l = counter_s = 0
+
+    for char in password:
+        if char.isdigit():
+            counter_d += 1
+        elif char.isupper():
+            counter_u += 1
+        elif char.islower():
+            counter_l += 1
+        elif not char.isspace():
+            counter_s += 1
+
+    if counter_d > 0 and counter_u > 0 and counter_l > 0 and counter_s > 0:
+        return password
+    return s_password()
+    print(strong)
 
 
 def user_password():
