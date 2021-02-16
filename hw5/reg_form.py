@@ -53,15 +53,12 @@ def phone():
 
 def email():
     email = input('Введіть email: ')
-    if len(email) < 6:
-        print('Недостатньо символів')
-        return
+    if (len(email) >= 6 and email.count('@') == 1 and
+            email[email.rfind('@'):].count('.') >= 1):
+        return email
     else:
-        if email.count('@') > 1 or email.count('@') == 0 or email[email.rfind('@'):].count('.') < 1:
-            print('Не вірний')
-            return False
-        else:
-            return email
+        print('Некорректна електронна адреса')
+    return
 
 
 def password():
@@ -90,9 +87,13 @@ def password():
         print('Закороткий пароль')
         return
     elif upper_case > 0 and lower_case > 0 and number > 0 and symbol > 0:
-        return password
+        while (input('Підтвердіть введення паролю: ') != password):
+            print('Паролі не сходяться. Повторіть спробу')
+        else:
+            return password
     else:
         print('Пароль заслабкий')
+        return
 
 
 def main():
@@ -107,16 +108,12 @@ def main():
     w = password()
     while not w:
         w = password()
-
-    r = input('Повторіть введення паролю: ')
-    if r != w:
-        print('Паролі не сходяться. Повторіть спробу')
-        password()
+    x = '*' * len(w)
     while True:
         print(f'''Вітаємо з успішною реєтрацією!
 Ваш номер телефона: {p}
 Ваш email: {e}
-Ваш пароль: {w}
+Ваш пароль: {x}
 ''')
         break
     return
