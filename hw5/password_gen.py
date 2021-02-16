@@ -69,9 +69,8 @@ def s_password():
     symbols = (string.punctuation)
     strong = uppercase + lowercase + number + symbols
     for i in range(size):
-        strong += random.choice(strong)
+        password += random.choice(strong)
     counter_d = counter_u = counter_l = counter_s = 0
-
     for char in password:
         if char.isdigit():
             counter_d += 1
@@ -81,11 +80,10 @@ def s_password():
             counter_l += 1
         elif not char.isspace():
             counter_s += 1
-
     if counter_d > 0 and counter_u > 0 and counter_l > 0 and counter_s > 0:
+        print(password)
         return password
     return s_password()
-    print(strong)
 
 
 def user_password():
