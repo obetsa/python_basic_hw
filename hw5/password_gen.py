@@ -69,8 +69,7 @@ def s_password():
     symbols = (string.punctuation)
     strong = uppercase + lowercase + number + symbols
     for i in range(size):
-        strong += random.choise(strong)
-
+        strong += random.choice(strong)
     counter_d = counter_u = counter_l = counter_s = 0
 
     for char in password:
