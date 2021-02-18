@@ -15,11 +15,11 @@
     (Использовать форматирование строк f либо метод format)
 """
 # можно заменить данную строку на input()
-#string = 'Lorem, Ipsum, is, sImPlY, duMMy, TEXT, of, The, printing, INDUSTRY.'
+# string = 'Lorem, Ipsum, is, sImPlY, duMMy, TEXT, of, The,
+# printing, INDUSTRY.'
 string = input('Исходная строка: ')
 
-# 1. 
-
+# 1.
 count_l = 0
 count_u = 0
 for char in string:
@@ -36,12 +36,11 @@ elif count_l == count_u:
     reg = string.swapcase()
 print(f'Результат: {reg}')
 
-# 2. 
-
+# 2.
 if string.istitle():
     tit = 'done. ' + string
 else:
-    tit = 'draft: '+ string[5:]
+    tit = 'draft: ' + string[5:]
 print(f'Результат: {tit}')
 
 # 3.
@@ -51,9 +50,3 @@ if len(string) > 20:
 else:
     result = string.ljust(20, '@')
 print(f'Результат: {result}')
-
-
-
-
-
-
