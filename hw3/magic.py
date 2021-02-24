@@ -27,7 +27,7 @@ while True:
         while attempts < 3:
 
             number = int(input("Введіть число: "))
-            attempts +=1
+            attempts += 1
             if number > random_number:
                 print("Введене число більше, за загадане")
             if number < random_number:
@@ -36,11 +36,11 @@ while True:
                 print(attempts, "спроби!", "Вгадали")
                 break
             else:
-                print("Використано", attempts,"спроби з трьох. Не вгадали")
+                print("Використано", attempts, "спроби з трьох. Не вгадали")
 
     except ValueError:
-        print("Введено не коректні дані")  
+        print("Введено не коректні дані")
 
     if input("Продовжити? (Y/n) ") == "n":
         print("Bye!")
-        break 
+        break
