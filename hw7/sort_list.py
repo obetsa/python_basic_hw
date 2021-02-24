@@ -9,8 +9,17 @@
 
 
 def sort_ascending(x):
-    pass
+    indexes = [i for i in range(len(x)) if x[i] == -1]
+    for i in range(len(indexes)):
+        x.remove(-1)
+    n = sorted(x)
+    for i in indexes:
+        n.insert(i, -1)
+    return n
 
+
+x = [6, 3, -1, 4, 2, -1, 1]
+print(sort_ascending(x))
 
 t_1 = [-1, 150, 190, 170, -1, -1, 160, 180]
 assert sort_ascending(t_1) == [-1, 150, 160, 170, -1, -1, 180, 190]

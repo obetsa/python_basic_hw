@@ -13,26 +13,27 @@
 def longest_strings(list_in):
     ml = max(len(s) for s in (list_in))
     result = list(set(s for s in list_in if len(s) == ml))
-    print(result)
+    # print(result)
+    return result
 
 
 list_in = ['a', 'asd', 'bd', 'q', 'dsq']
-longest_strings(list_in)
+print(longest_strings(list_in))
 
 
-# t_1 = ["x"]
-# assert longest_strings(t_1) == ["x"]
+t_1 = ["x"]
+assert longest_strings(t_1) == ["x"]
 
-# t_2 = ["abc", "eeee", "abcd", "dcd"]
-# assert longest_strings(t_2) == ["eeee", "abcd"]
+t_2 = ["abc", "eeee", "abcd", "dcd"]
+assert longest_strings(t_2) == ["eeee", "abcd"]
 
-# t_3 = ["a", "abc", "cbd", "zzzzzz", "a", "abcdef", "asasa", "aaaaaa"]
-# assert longest_strings(t_3) == ["zzzzzz", "abcdef", "aaaaaa"]
+t_3 = ["a", "abc", "cbd", "zzzzzz", "a", "abcdef", "asasa", "aaaaaa"]
+assert longest_strings(t_3) == ["zzzzzz", "abcdef", "aaaaaa"]
 
-# t_4 = ["enyky", "benyky", "yely", "varennyky"]
-# assert longest_strings(t_4) == ["varennyky"]
+t_4 = ["enyky", "benyky", "yely", "varennyky"]
+assert longest_strings(t_4) == ["varennyky"]
 
-# t_5 = ["abacaba", "abacab", "abac", "xxxxxx"]
-# assert longest_strings(t_5) == ["abacaba"]
+t_5 = ["abacaba", "abacab", "abac", "xxxxxx"]
+assert longest_strings(t_5) == ["abacaba"]
 
-# print("All tests passed successfully!")
+print("All tests passed successfully!")
