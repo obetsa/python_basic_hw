@@ -12,7 +12,7 @@
 
 def longest_strings(list_in):
     ml = max(len(s) for s in (list_in))
-    result = list(set(s for s in list_in if len(s) == ml))
+    result = list(s for s in list_in if len(s) == ml)
     # print(result)
     return result
 

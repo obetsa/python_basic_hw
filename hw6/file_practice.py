@@ -27,16 +27,15 @@
     Полученный текст дописать в файл file_practice.txt
 """
 
-# with open("files/text.txt", "r") as f:
-#     f1 = f.read()
-#     print(f1)
-#     if f1.count('i') > f1.count('e'):
-#         f2 = f1.replace('e', 'i')
-#     elif f1.count('i') < f1.count('e'):
-#         f2 = f1.replace('i', 'e')
-# with open("files/file_practice.txt", "a") as f:
-#     f.write(f2)
-#     f.seek(0)
+# with open("files/text.txt") as f:
+#     text = f.read()
+#     if text.count("i") > text.count("e"):
+#         text = text.replace("i", "e")
+#     else:
+#         text = text.replace("e", "i")
+
+# with open("file_practice.txt", "a") as f:
+#     f.write(text)
 
 """
     4.
