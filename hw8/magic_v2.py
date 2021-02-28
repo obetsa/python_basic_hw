@@ -18,37 +18,86 @@
 """
 
 import random
-def save():
-    with open("save.txt", a) as f:
-        
+import json
 
-def magic():
+
+def game():
     random_number = random.randint(1, 10)
     print(random_number)
     attempts = 0
-    while attempts < 3:
-        number = input("Введіть число: ")
-        attempts += 1
-        if int(number) > random_number:
-            print("Введене число більше, за загадане")
-        if int(number) < random_number:
-            print("Введене число менше, за загадане")
-        if int(number) == random_number:
-            print(attempts, "спроби!", "Вгадали")
-            # return magic()
-        else:
-            print("Використано", attempts, "спроби з трьох. Не вгадали")
-            return magic()
-
-    return magic()
-    print("Введено не коректні дані")
-
-
-magic()
+    while True:
+        try:
+            number = int(input("Введіть число: "))
+            attempts += 1
+            if number > random_number:
+                print("Введене число більше, за загадане")
+            if number < random_number:
+                print("Введене число менше, за загадане")
+            if number == random_number:
+                print(attempts, "спроби!", "Вгадали")
+                break
+            else:
+                print("Використано", attempts, "спроби з трьох. Не вгадали")
+        except ValueError:
+            print("Введено не коректні дані")
+    return attempts
 
 
-# def game():
+def save(stats):
+    with open('save.json', 'w') as f:
+        json.dumps(stats, indent=2)
 
-#     if input("Продовжити? (Y/n) ") == "n":
-#         print("Bye!")
-#         return
+        with open('save.json') as f:
+            data = json.load(f)
+
+            temp = data['21312']
+            data = stats
+            temp.append(stats)
+    f.write(data)
+    
+
+    # with open('save.json', 'r') as f:
+    #     data = json.load(f)
+    #     json.close()
+    # with open('save.json', 'a') as f:
+    #     # a = json.load(f)
+    #     # a.update(stats)
+    #     data = json.dumps(stats, indent=2)
+    #     f.write(data)
+    #     if a:
+    #         a.update(stats)
+    #         data = json.dumps(a, indent=2)
+    #     else:
+    #         data = json.dumps(stats, indent=2)
+    # f.write(data)
+
+
+def menu():
+    stats = {}
+    games = 0
+    record = []
+    avg_attempts = 0
+    sum_attempts = 0
+    name = input("Enter Name: ")
+    while True:
+        attempts = game()
+        sum_attempts += attempts
+        games += 1
+        avg_attempts = sum_attempts / games
+        record.append(attempts)
+        if input("Продовжити? (Y/n) ") == "n":
+            stats['name'] = name
+            stats['games'] = games
+            stats['record'] = min(record)
+            stats['avg_attempts'] = avg_attempts
+            return stats
+            print("Bye!")
+            break
+
+
+def main():
+    stats = menu()
+    save(stats)
+
+
+main()
