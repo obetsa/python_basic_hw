@@ -26,7 +26,12 @@
 
 
 def main():
-    pass
+    s = 1
+    num = int(input("Введіть кількість студенів: "))
+    members = [input("Введіть ім'я студента і бал через пробіл: ").split() for _ in range(num)]
+    for i in sorted(members, key=lambda x: int(x[1]), reverse=True):
+        print(f"{s}.", i[0])
+        s += 1
 
 
 if __name__ == "__main__":
