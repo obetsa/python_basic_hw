@@ -36,7 +36,7 @@ def game():
                 print(attempts, "спроби!", "Вгадали")
                 break
             else:
-                print("Використано", attempts, "спроби з трьох. Не вгадали")
+                print("Використано", attempts, "спроби. Не вгадали")
         except ValueError:
             print("Введено не коректні дані")
     return attempts
