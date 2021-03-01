@@ -18,7 +18,6 @@
 """
 
 import random
-# import json
 
 
 def game():
