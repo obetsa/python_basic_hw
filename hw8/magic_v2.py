@@ -18,7 +18,7 @@
 """
 
 import random
-import json
+# import json
 
 
 def game():
@@ -44,32 +44,8 @@ def game():
 
 
 def save(stats):
-    with open('save.json', 'w') as f:
-        json.dumps(stats, indent=2)
-
-        with open('save.json') as f:
-            data = json.load(f)
-
-            temp = data['21312']
-            data = stats
-            temp.append(stats)
-    f.write(data)
-    
-
-    # with open('save.json', 'r') as f:
-    #     data = json.load(f)
-    #     json.close()
-    # with open('save.json', 'a') as f:
-    #     # a = json.load(f)
-    #     # a.update(stats)
-    #     data = json.dumps(stats, indent=2)
-    #     f.write(data)
-    #     if a:
-    #         a.update(stats)
-    #         data = json.dumps(a, indent=2)
-    #     else:
-    #         data = json.dumps(stats, indent=2)
-    # f.write(data)
+    with open('save.txt', 'a+') as f:
+        f.write(f'{stats}\n')
 
 
 def menu():

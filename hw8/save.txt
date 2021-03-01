@@ -1,0 +1,1 @@
+{'name': 'gdfgfdg', 'games': 1, 'record': 4, 'avg_attempts': 4.0}
