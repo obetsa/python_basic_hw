@@ -25,17 +25,19 @@
 """
 
 
-# def skates(available_sizes, foot_sizes):
-#     pass
-skates = sorted(list(map(int, input().split())))
-visitors = sorted(list(map(int, input().split())))
-res = 0
-while True:
-    try:
-        skates = list(filter(lambda x: x >= min(visitors), skates))
-        skates.pop(0)
-        visitors.pop(0)
-        res += 1
-    except:
-        break
-print(res)
+def skates():
+    skates = sorted(list(map(int, input().split())))
+    visitors = sorted(list(map(int, input().split())))
+    res = 0
+    while True:
+        try:
+            skates = list(filter(lambda x: x >= min(visitors), skates))
+            skates.pop(0)
+            visitors.pop(0)
+            res += 1
+        except:
+            break
+    print(res)
+
+
+skates()
