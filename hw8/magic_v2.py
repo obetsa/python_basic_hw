@@ -22,7 +22,7 @@ import random
 
 def game():
     random_number = random.randint(1, 10)
-    print(random_number)
+    # print(random_number)
     attempts = 0
     while True:
         try:
