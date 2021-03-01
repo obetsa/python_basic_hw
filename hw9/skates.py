@@ -27,18 +27,15 @@
 
 # def skates(available_sizes, foot_sizes):
 #     pass
-
-skates = sorted(list(map(int,input().split()))) # получаем сортированные списки чтоб минимальные были первыми
-visitors = sorted(list(map(int,input().split())))
+skates = sorted(list(map(int, input().split())))
+visitors = sorted(list(map(int, input().split())))
 res = 0
-while True: # пока не закончатся коньки или посетители
+while True:
     try:
-        skates = list(filter(lambda x : x>= min(visitors), skates)) # отбрасываем меньше мин размера
-        skates.pop(0) # отдаем коньки (удаляем) первые из списка которые точно не меньше мин размера
-        # первого в списке посетителя
-        visitors.pop(0) # удаляем посетителя из списка
-        res += 1 # считаем
-        # если еще есть коньки или посетители начинаем заново с отбрасываем меньше мин размера
+        skates = list(filter(lambda x: x >= min(visitors), skates))
+        skates.pop(0)
+        visitors.pop(0)
+        res += 1
     except:
         break
 print(res)
