@@ -26,14 +26,14 @@
 
 
 def skates():
-    skates = sorted(list(map(int, input().split())))
-    visitors = sorted(list(map(int, input().split())))
+    s = sorted(list(map(int, input("Введіть доступні розміри через пробіл: ").split())))
+    p = sorted(list(map(int, input("Введіть розміри ніг через пробіл: ").split())))
     res = 0
     while True:
         try:
-            skates = list(filter(lambda x: x >= min(visitors), skates))
-            skates.pop(0)
-            visitors.pop(0)
+            s = list(filter(lambda x: x >= min(p), s))
+            s.pop(0)
+            p.pop(0)
             res += 1
         except:
             break
