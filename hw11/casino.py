@@ -69,3 +69,45 @@
 
         * описынные выше правила можно дополнить по желанию
 """
+
+
+
+def main():
+    name = input("Enter your name: ")
+    while try:
+        main_manu()
+
+
+def main_menu():
+    user_choice = input('''Главное меню:
+    1. Magic
+    2. Blackjack (21)
+    3. Посмотреть статистику
+    4. Сбросить игровой прогресс''')
+    if user_choice == "1":
+        magic()
+    elif user_choice == "2":
+        blackjack()
+    elif user_choice == "3":
+        show_stat()
+    elif user_choice == "3":
+        reset()
+    else:
+        return main_menu()
+
+
+    if input("\nСгенерировать еще? (Y/n) ") != "n":
+        return main()
+
+
+def main():
+    # Создаем объект класса Casino
+    game = Casino()
+    # Запускаем метод, который является точкой входа в игру
+    game.launch()
+
+
+if __name__ == "__main__":
+    main()
+
+
