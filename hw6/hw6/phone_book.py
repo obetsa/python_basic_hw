@@ -38,7 +38,7 @@ if __name__ == "__main__":
 #     idx = 1
 #     for line in f.readlines():
 #         # получить имя
-#         # 1 вариант в две строки
+#         # 1 вариант в две строкиy
 #         # name_phone = re.sub(r"\W", "", line)
 #         # name = re.sub(r"\d", "", name_phone).lower()
 
