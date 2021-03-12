@@ -56,7 +56,6 @@
 
 """
 
-
 import re
 # import random
 # import string
@@ -68,9 +67,9 @@ BASE_DIR = Path(__file__).resolve().parent
 def main_menu():
     while(True):
         choice = input(
-            "1. Зарегистрировать нового пользователя\n"
-            "2. Просмотреть список пользователей\n"
-            "3. Close program\n"
+            "\n1. Зареєструвати нового користувача\n"
+            "2. Подивитись список користувачів\n"
+            "3. Закрити програму\n\n"
         )
         if choice == "1":
             reg_user()
@@ -79,7 +78,7 @@ def main_menu():
         elif choice == "3":
             break
         else:
-            print("Enter correct num!!")
+            print("Введіть коректні дані.")
 
         # if input("Continue? (Y/n)") == "n":
         #         break
@@ -98,19 +97,19 @@ def reg_user():
         save_data(phone, email, password)
 
         print(
-            f"\nПоздравляем с успешной регистрацией!"
-            f"\nВаш номер телефона: +{phone}"
+            f"\nВітаємо з успішною реєстрацією!"
+            f"\nВаш номер телефону: +{phone}"
             f"\nВаш email: {email}"
             f'\nВаш пароль: {"*"*len(password)}'
         )
 
-        if input("Continue? (Y/n)") == "n":
+        if input("Продовжити? (Y/n)") == "n":
             break
         main_menu()
 
-    print(user_list)
+    # print(user_list)
     user_data = user_list[0]
-    print(user_data[0], user_data[1], user_data[2])
+    print("\n" + user_data[0], user_data[1], user_data[2])
 
     # with open(BASE_DIR / "users.txt", "a") as f:
     #     for phone, email, password in user_list:
@@ -135,7 +134,7 @@ def phone_valid(phone):
 
 
 def get_phone():
-    phone = input("Enter phone number:")
+    phone = input("Введіть номер телефону: ")
     phone = formatted_phone(phone)
 
     if phone_valid(phone) is True:
@@ -150,7 +149,7 @@ def search_phone_in_file(phone):
         for line in f:
             line_number += 1
             if phone in line:
-                print("number exists! enter another")
+                print("Такий номер уже існує! Введіть інший")
                 return get_phone()
         # return phone
             # return get_phone()
@@ -161,7 +160,7 @@ def search_phone_in_file(phone):
 def get_email():
     email = input("Введите email: ")
     if len(email) < 6 or email.count("@") != 1 or email.startswith("@"):
-        print("Неверный формат. Повторите ввод.")
+        print("Невірний формат. Повторіть введення даних.")
         return get_email()
     return email
 
@@ -169,7 +168,7 @@ def get_email():
 def get_password():
     password = input("Введите пароль: ")
     if len(password) < 8 or re.findall(r"\s", password):
-        print("Пароль слишком простой. Придумайте более надежный пароль.")
+        print("Пароль занадто слабкий. Придумайте більш надійніший пароль.")
         return get_password()
 
     u_counter = l_counter = d_counter = s_counter = 0
@@ -184,11 +183,11 @@ def get_password():
             s_counter += 1
 
     if min(u_counter, l_counter, d_counter, s_counter) == 0:
-        print("Пароль слишком простой. Придумайте более надежный пароль.")
+        print("Пароль занадто слабкий. Придумайте більш надійніший пароль.")
         return get_password()
 
-    if input("Повторите пароль: ") != password:
-        print("Пароли не совпадают.")
+    if input("Повторіть введення паролю: ") != password:
+        print("Паролі не співпадають.")
         return get_password()
     return password
 
@@ -200,15 +199,16 @@ def show():
         print(len(data))
 
         choice = input(
-            "Отобразить всех пользователей? (y/n)\n"
+            "Відобразити всіх користувачів? (y/n)\n"
         )
         if choice == "y":
             show_phone()
+            user_statistic()
             menu_user()
         elif choice == "n":
             main_menu()
         else:
-            print("Enter correct data!!!")
+            print("Введіть коректні дані. (y/n)")
 
 
 def show_phone():
@@ -236,21 +236,32 @@ def user_data(uid):
     return menu_user()
 
 
+def user_statistic():
+    numb = int(input(
+            "\nВведіть номер по списку,"
+            "для перегладу деталей користувача: \n"))
+    numb -= 1
+    with open(BASE_DIR / "users.txt", "r") as f:
+        f.seek(0)
+        data = f.readlines()
+        print(data[numb])
+
+
 def menu_user():
     choice = input(
-            "\n1. Сбросить пароль\n"
-            "2. Удалить пользователя\n"
+            "\n1. Cкинути пароль\n"
+            "2. Удалити користувача\n"
         )
     if choice == "1":
-        uid = int(input("Please enter ID number: "))
+        uid = int(input("Введіть номер по списку: "))
         uid -= 1
         generate_pass(uid)
     elif choice == "2":
-        uid = int(input("Please enter ID number: "))
+        uid = int(input("Введіть номер по списку: "))
         uid -= 1
         delete_user(uid)
     else:
-        print("Enter correct data!!!")
+        print("Введіть коректні дані.")
 
 
 def generate_pass(uid):
