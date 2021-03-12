@@ -150,7 +150,7 @@ def search_phone_in_file(phone):
         for line in f:
             line_number += 1
             if phone in line:
-                print("number exists? enter another")
+                print("number exists! enter another")
                 return get_phone()
         # return phone
             # return get_phone()

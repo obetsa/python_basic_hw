@@ -7,7 +7,9 @@ def dealing_cards(cards, number):
         cards.append(random.choice(deck))
     return cards
 
-#conversion of player's cards
+# conversion of player's cards
+
+
 def convert(cards):
     new_cards = cards.copy()
     if new_cards[0] == 'A' and new_cards[1] == 'A':

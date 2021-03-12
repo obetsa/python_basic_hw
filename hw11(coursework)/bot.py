@@ -55,12 +55,12 @@ def send_welcome(message):
     """Функция выполняется при командах /start и /first
     И отправляет сообщение в чат, с которого была получена команда
     """
-    bot.send_message(message.chat.id, "Welcome!", reply_markup = keyboard1)
+    bot.send_message(message.chat.id, "Welcome!", reply_markup=keyboard1)
 
 
 @bot.message_handler(commands=["hi"])
-def send_welcome(message):
-    bot.send_message(message.chat.id, "Choose game", reply_markup = keyboard1)
+def send_welcome1(message):
+    bot.send_message(message.chat.id, "Choose game", reply_markup=keyboard1)
 
 
 @bot.message_handler(commands=["time"])
