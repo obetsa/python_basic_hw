@@ -65,9 +65,10 @@ BASE_DIR = Path(__file__).resolve().parent
 def main_menu():
     while(True):
         choice = input(
-            "\n1. Зареєструвати нового користувача\n"
-            "2. Подивитись список користувачів\n"
-            "3. Закрити програму\n\n"
+            ''' \nРеєстрація користувачів:\n
+1. Зареєструвати нового користувача
+2. Подивитись список користувачів
+3. Закрити програму\n\n'''
         )
         if choice == "1":
             reg_user()
@@ -82,25 +83,24 @@ def main_menu():
 def reg_user():
     user_list = []
 
-    while True:
-        phone = get_phone()
-        search_phone_in_file(phone)
-        email = get_email()
-        password = get_password()
+    phone = get_phone()
+    search_phone_in_file(phone)
+    email = get_email()
+    password = get_password()
 
-        user_list.append([phone, email, password])
-        save_data(phone, email, password)
+    user_list.append([phone, email, password])
+    save_data(phone, email, password)
 
-        print(
-            f"\nВітаємо з успішною реєстрацією!"
-            f"\nВаш номер телефону: +{phone}"
-            f"\nВаш email: {email}"
-            f'\nВаш пароль: {"*"*len(password)}'
-        )
+    print(
+        f"\nВітаємо з успішною реєстрацією!"
+        f"\nВаш номер телефону: +{phone}"
+        f"\nВаш email: {email}"
+        f'\nВаш пароль: {"*"*len(password)}'
+    )
 
-        if input("Продовжити? (Y/n)") == "n":
-            break
-        main_menu()
+    if input("Продовжити? (Y/n)") == "n":
+        return user_list
+    return reg_user()
 
     user_data = user_list[0]
     print("\n" + user_data[0], user_data[1], user_data[2])
@@ -184,8 +184,12 @@ def show():
         f.seek(0)
         data = f.readlines()
         a = len(data)
-        b = "{}".format(a)
-        print(b + ' користувачів')
+        if a > 1:
+            b = "{}".format(a)
+            print('В базі ' + b + ' користувачів')
+        else:
+            b = "{}".format(a)
+            print('В базі ' + b + ' користувач')
 
         choice = input(
             "Відобразити всіх користувачів? (y/n)\n"
@@ -197,7 +201,7 @@ def show():
         elif choice == "n":
             main_menu()
         else:
-            print("Введіть коректні дані. (y/n)")
+            print("Введіть коректні дані, з вибору 'y' або 'n'")
             return show()
 
 
@@ -241,8 +245,8 @@ def user_statistic():
 
 def menu_user(numb):
     choice = input(
-            "\n1. Cкинути пароль\n"
-            "2. Удалити користувача\n"
+            "\n1. Змінити пароль\n"
+            "2. Видалити користувача\n"
             "3. Повернутись в головне меню\n"
         )
     if choice == "1":
