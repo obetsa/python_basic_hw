@@ -57,8 +57,6 @@
 """
 
 import re
-# import random
-# import string
 import password_gen
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
@@ -79,9 +77,6 @@ def main_menu():
             break
         else:
             print("Введіть коректні дані.")
-
-        # if input("Continue? (Y/n)") == "n":
-        #         break
 
 
 def reg_user():
@@ -107,13 +102,8 @@ def reg_user():
             break
         main_menu()
 
-    # print(user_list)
     user_data = user_list[0]
     print("\n" + user_data[0], user_data[1], user_data[2])
-
-    # with open(BASE_DIR / "users.txt", "a") as f:
-    #     for phone, email, password in user_list:
-    #         print(f"{phone} {email} {password}", file=f)
 
 
 def save_data(phone, email, password):
@@ -151,9 +141,6 @@ def search_phone_in_file(phone):
             if phone in line:
                 print("Такий номер уже існує! Введіть інший")
                 return get_phone()
-        # return phone
-            # return get_phone()
-                # list_of_results.append((line_number, line.rstrip()))
     return list_of_results
 
 
@@ -196,7 +183,9 @@ def show():
     with open(BASE_DIR / "users.txt", "r") as f:
         f.seek(0)
         data = f.readlines()
-        print(len(data))
+        a = len(data)
+        b = "{}".format(a)
+        print(b + ' користувачів')
 
         choice = input(
             "Відобразити всіх користувачів? (y/n)\n"
@@ -204,11 +193,12 @@ def show():
         if choice == "y":
             show_phone()
             user_statistic()
-            menu_user()
+            # menu_user()
         elif choice == "n":
             main_menu()
         else:
             print("Введіть коректні дані. (y/n)")
+            return show()
 
 
 def show_phone():
@@ -230,65 +220,63 @@ def read_data():
     return data
 
 
-def user_data(uid):
+def user_data(numb):
     data = read_data()
-    print(data[uid])
+    print(data[numb])
     return menu_user()
 
 
 def user_statistic():
     numb = int(input(
             "\nВведіть номер по списку,"
-            "для перегладу деталей користувача: \n"))
+            "для перегладу деталей користувача: "))
     numb -= 1
     with open(BASE_DIR / "users.txt", "r") as f:
         f.seek(0)
         data = f.readlines()
         print(data[numb])
 
+    return menu_user(numb)
 
-def menu_user():
+
+def menu_user(numb):
     choice = input(
             "\n1. Cкинути пароль\n"
             "2. Удалити користувача\n"
+            "3. Повернутись в головне меню\n"
         )
     if choice == "1":
-        uid = int(input("Введіть номер по списку: "))
-        uid -= 1
-        generate_pass(uid)
+        # uid = int(input("Введіть номер по списку: "))
+        # uid -= 1
+        generate_pass(numb)
     elif choice == "2":
-        uid = int(input("Введіть номер по списку: "))
-        uid -= 1
-        delete_user(uid)
+        # uid = int(input("Введіть номер по списку: "))
+        # uid -= 1
+        delete_user(numb)
+    elif choice == "3":
+        main_menu()
     else:
         print("Введіть коректні дані.")
 
 
-def generate_pass(uid):
+def generate_pass(numb):
     data = read_data()
-    d = data[uid]
+    d = data[numb]
     d = d.split(' ')
-    # print(d)
     d.pop()
-    # print(d)
-    # size = 8
-    # lowercase = (string.ascii_lowercase)
-    # light_p = "".join(random.sample(lowercase, size))
     light_p = password_gen.main()
     print(light_p)
     d.append(light_p)
-    # print(d)
-    data[uid] = ' '.join(d) + '\n'
+    data[numb] = ' '.join(d) + '\n'
     with open(BASE_DIR / "users.txt", "w") as f:
         for lines in data:
-            # f.seek(0)
             f.write('%s' % lines)
     return
 
 
-def delete_user(uid):
+def delete_user(numb):
     data = read_data()
-    d = data[uid]
+    d = data[numb]
     with open(BASE_DIR / "users.txt", "w") as f:
         for line in data:
             if line != d:
@@ -301,10 +289,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# https://code-projects.org/bakery-shop-chatbot-in-python-with-source-code/
-# https://code-projects.org/student-management-system-in-python-with-source-code/
-# https://code-projects.org/user-management-system-in-python-with-source-code/
-# https://code-projects.org/c/languages/project/pythonprojects/page/8/
-# https://www.google.com/search?safe=strict&sxsrf=ALeKk01MtC_CTVBJJG2evcWEYyO5vZbBUQ%3A1615155396699&ei=xFBFYIumKvGMrgTpraD4Dw&q=python+casino&oq=python+casino&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBQgAEMsBMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMggIABAWEAoQHjoHCCMQsAMQJzoHCAAQRxCwA1DKuAFYyrgBYK-7AWgBcAJ4AIABkAGIAfEBkgEDMS4xmAEAoAEBqgEHZ3dzLXdpesgBCcABAQ&sclient=gws-wiz&ved=0ahUKEwiLmLXdmp_vAhVxhosKHekWCP8Q4dUDCA4&uact=5
