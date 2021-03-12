@@ -58,8 +58,9 @@
 
 
 import re
-import random
-import string
+# import random
+# import string
+import password_gen
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -118,6 +119,7 @@ def reg_user():
 
 def save_data(phone, email, password):
     with open(BASE_DIR / "users.txt", "a") as f:
+        f.seek(0)
         print(f"{phone} {email} {password}", file=f)
 
 
@@ -149,7 +151,7 @@ def search_phone_in_file(phone):
             line_number += 1
             if phone in line:
                 print("number exists? enter another")
-                return phone()
+                return get_phone()
         # return phone
             # return get_phone()
                 # list_of_results.append((line_number, line.rstrip()))
@@ -241,9 +243,11 @@ def menu_user():
         )
     if choice == "1":
         uid = int(input("Please enter ID number: "))
+        uid -= 1
         generate_pass(uid)
     elif choice == "2":
         uid = int(input("Please enter ID number: "))
+        uid -= 1
         delete_user(uid)
     else:
         print("Enter correct data!!!")
@@ -253,18 +257,21 @@ def generate_pass(uid):
     data = read_data()
     d = data[uid]
     d = d.split(' ')
-    print(d)
+    # print(d)
     d.pop()
-    print(d)
-    size = 8
-    lowercase = (string.ascii_lowercase)
-    light_p = "".join(random.sample(lowercase, size))
+    # print(d)
+    # size = 8
+    # lowercase = (string.ascii_lowercase)
+    # light_p = "".join(random.sample(lowercase, size))
+    light_p = password_gen.main()
     print(light_p)
     d.append(light_p)
-    print(d)
-    with open(BASE_DIR / "users.txt", "r+") as f:
-        f.write(d)
-
+    # print(d)
+    data[uid] = ' '.join(d) + '\n'
+    with open(BASE_DIR / "users.txt", "w") as f:
+        for lines in data:
+            # f.seek(0)
+            f.write('%s' % lines)
     return
 
 
