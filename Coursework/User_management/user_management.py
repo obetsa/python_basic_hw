@@ -81,8 +81,8 @@ def search_phone_in_file(phone):
         for line in f:
             line_number += 1
             if phone in line:
-                print("Такий номер уже існує! Зареєструйте іншого користувача")
-                return main_menu()
+                print("Такий номер уже існує! Зареєструйте інший номер")
+                return get_phone()
     return list_of_results
 
 
