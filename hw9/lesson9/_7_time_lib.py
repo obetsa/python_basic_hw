@@ -6,7 +6,26 @@
 
     * Unix-время - количество секунд, прошедших с 1 января 1970 года
 """
-import time
+
+
+
+import datetime
+
+now = datetime.datetime.now().time()
+# c = datetime.time(6, 00, 00, 1)
+a = datetime.time(21, 00, 00, 1)
+b = datetime.time(6, 00, 00, 1)
+# a = datetime.time(23, 5, 30)
+# today = datetime.time()
+if a > now and b < now:
+    return 
+    print("day")
+else:
+    print("night")
+# print(today)
+print(now)
+print(a)
+print(b)
 
 
 def func_1():
